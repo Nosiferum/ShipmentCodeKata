@@ -17,4 +17,8 @@ public class Product {
     public void setSize(ShipmentSize size) {
         this.size = size;
     }
+
+    public boolean isLargerSizeThan(ShipmentSize sizeToCompare) {
+        return this.getSize().isLargerThan(sizeToCompare);
+    }
 }
