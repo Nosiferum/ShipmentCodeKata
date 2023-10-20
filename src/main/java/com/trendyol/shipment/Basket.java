@@ -3,6 +3,7 @@ package com.trendyol.shipment;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Basket {
 
@@ -27,7 +28,7 @@ public class Basket {
     }
 
     private void initializeProductSizeCounts() {
-        for (Product product : products) {
+        for (Product product : getProducts()) {
             ShipmentSize currentProductSize = product.getSize();
             int newCount = productSizeCounts.getOrDefault(currentProductSize, 0) + 1;
             productSizeCounts.put(currentProductSize, newCount);
@@ -35,14 +36,13 @@ public class Basket {
     }
 
     private ShipmentSize findLargestProductSize() {
-        ShipmentSize largestProductSize = ShipmentSize.getSmallestShipmentSize();
-        for (Product product : products) {
-            if(product.isLargerSizeThan(largestProductSize))
-            {
-                largestProductSize = product.getSize();
-            }
-        }
-        return largestProductSize;
+        AtomicReference<ShipmentSize> largestProductSize = new AtomicReference<>(ShipmentSize.getSmallestShipmentSize());
+
+        getProducts().forEach(product -> {
+            if (product.isLargerSizeThan(largestProductSize.get())) largestProductSize.set(product.getSize());
+        });
+
+        return largestProductSize.get();
     }
 
     public List<Product> getProducts() {
