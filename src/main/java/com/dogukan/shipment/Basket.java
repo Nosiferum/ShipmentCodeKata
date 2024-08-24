@@ -1,4 +1,4 @@
-package com.trendyol.shipment;
+package com.dogukan.shipment;
 
 import java.util.EnumMap;
 import java.util.List;

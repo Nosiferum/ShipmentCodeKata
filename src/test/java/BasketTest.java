@@ -1,6 +1,6 @@
-import com.trendyol.shipment.Basket;
-import com.trendyol.shipment.Product;
-import com.trendyol.shipment.ShipmentSize;
+import com.dogukan.shipment.Basket;
+import com.dogukan.shipment.Product;
+import com.dogukan.shipment.ShipmentSize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;

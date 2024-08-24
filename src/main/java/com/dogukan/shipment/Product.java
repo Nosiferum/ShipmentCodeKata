@@ -1,4 +1,4 @@
-package com.trendyol.shipment;
+package com.dogukan.shipment;
 
 public class Product {
 
